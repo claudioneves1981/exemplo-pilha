@@ -1,30 +1,31 @@
 package one.digitalinnovation;
 
-public class Pilha {
+public class Pilha<T> {
 
-    private No refNoEntradaPilha;
+    private No<T> refNoEntradaPilha;
 
     public Pilha() {
         this.refNoEntradaPilha = null;
     }
 
-    public void push(No novoNo){
+    public void push(T object){
+        No novoNo = new No(object);
         No refAuxiliar = refNoEntradaPilha;
         refNoEntradaPilha = novoNo;
         refNoEntradaPilha.setRefNo(refAuxiliar);
     }
 
-    public No pop(){
+    public T pop(){
         if(!this.isEmpty()){
             No noPoped = refNoEntradaPilha;
             refNoEntradaPilha = refNoEntradaPilha.getRefNo();
-            return noPoped;
+            return (T) noPoped.getDado();
         }
         return null;
     }
 
-    public No top(){
-        return refNoEntradaPilha;
+    public T top(){
+        return refNoEntradaPilha.getDado();
     }
 
     public boolean isEmpty(){
